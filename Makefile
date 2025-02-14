@@ -22,4 +22,6 @@ forcefix:
 sqlc:
 	sqlc generate	
 
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc checkmigrate forcefix
+test:
+	go test -v -cover ./...
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc checkmigrate forcefix test
