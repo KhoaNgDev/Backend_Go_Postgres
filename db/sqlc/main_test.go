@@ -38,24 +38,3 @@ func TestMain(m *testing.M) {
 }
 
 
-/*
- **Cách debug khi gặp lỗi**:
-1. **Lỗi "cannot connect to db"**:
-   - Kiểm tra xem PostgreSQL có đang chạy không: `docker ps`
-   - Kiểm tra kết nối DB với lệnh: `psql -U root -d simple_bank`
-   - Kiểm tra `dbSource` có đúng với config của database không.
-   - Nếu dùng Docker, đảm bảo container đang chạy: `docker start postgres12`.
-
-2. **Lỗi "relation does not exist" khi chạy test**:
-   - Kiểm tra lại xem đã chạy migration chưa (`make migrateup`).
-   - Kiểm tra thư mục `db/migration/` có chứa các file migration hợp lệ không.
-
-3. **Test bị panic hoặc bị lỗi kết nối giữa chừng**:
-   - Xem có phải do DB bị reset hoặc container bị stop giữa test không.
-   - Kiểm tra log PostgreSQL bằng: `docker logs postgres12`.
-
-4. **Lỗi testQueries bị nil hoặc không khởi tạo**:
-   - Đảm bảo `sql.Open()` không bị lỗi trước khi gọi `New(conn)`.
-   - Kiểm tra lại `dbDriver` và `dbSource`.
-
-*/

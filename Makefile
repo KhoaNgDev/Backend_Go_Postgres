@@ -24,4 +24,12 @@ sqlc:
 
 test:
 	go test -v -cover ./...
-.PHONY: postgres createdb dropdb migrateup migratedown sqlc checkmigrate forcefix test
+
+checktest:
+	go test -coverprofile=coverage.out ./...
+	go tool cover -html=coverage.out
+
+checkdbconn:
+	go test -run TestDBConnection
+
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc checkmigrate forcefix test checktest checkdbconn
